@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # Service pour OpenJDK 8
+  app:
+    image: openjdk:8-jdk
+    container_name: parkingsystem-app
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: bash -c "mkdir -p target/classes && javac -d target/classes src/main/java/com/parkit/parkingsystem/**/*.java && java -cp target/classes com.parkit.parkingsystem.App"
+
+    networks:
+      - parkingsystem-network
+    depends_on:
+      - db
+
+
+  # Service pour MySQL
+  db:
+    image: mysql:8
+    container_name: parkingsystem-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootroot
+      MYSQL_DATABASE: prod
+    ports:
+      - "3306:3306"
+    networks:
+      - parkingsystem-network
+    volumes:
+      - db-data:/var/lib/mysql
+
+networks:
+  parkingsystem-network:
+    driver: bridge
+
+volumes:
+  db-data:
