@@ -6,6 +6,7 @@ import com.parkit.parkingsystem.model.ParkingSpot;
 import com.parkit.parkingsystem.model.Ticket;
 import com.parkit.parkingsystem.service.Fare30MinutesCalculator;
 import com.parkit.parkingsystem.service.FareCalculatorService;
+import com.parkit.parkingsystem.service.FareDiscountCalculator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -153,6 +154,46 @@ public class FareCalculatorServiceTest {
         fareCalculatorService = new Fare30MinutesCalculator();
         fareCalculatorService.calculateFare(ticket);
         assertEquals( (0.0 * Fare.BIKE_RATE_PER_HOUR) , ticket.getPrice());
+    }
+
+    @Test
+    public void calculateFareCarWithDiscountDescription(){
+        Date inTime = new Date();
+        inTime.setTime( System.currentTimeMillis() - (  60 * 60 * 1000) );
+        Date halfHour = new Date();
+        halfHour.setTime( System.currentTimeMillis() - (  30 * 60 * 1000) ); //30 munites
+        Date outTime = new Date();
+        ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR,false);
+
+        ticket.setInTime(inTime);
+        ticket.setOutTime(outTime);
+        ticket.setParkingSpot(parkingSpot);
+        ticket.setVehicleRegNumber("AA-123-BB");
+        fareCalculatorService = new FareDiscountCalculator();
+        fareCalculatorService.calculateFare(ticket, true);
+        assertEquals(true, ticket.getVehicleRegNumber());
+        assertEquals( (0.95 * Fare.CAR_RATE_PER_HOUR) , ticket.getPrice());
+        assertThrows(IllegalArgumentException.class, () -> fareCalculatorService.calculateFare(ticket));
+    }
+
+    @Test
+    public void calculateFareBikeWithDiscountDescription(){
+        Date inTime = new Date();
+        inTime.setTime( System.currentTimeMillis() - (  60 * 60 * 1000) );
+        Date halfHour = new Date();
+        halfHour.setTime( System.currentTimeMillis() - (  30 * 60 * 1000) ); //30 munites
+        Date outTime = new Date();
+        ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.BIKE,false);
+
+        ticket.setInTime(inTime);
+        ticket.setOutTime(outTime);
+        ticket.setParkingSpot(parkingSpot);
+        ticket.setVehicleRegNumber("AA-123-BB");
+        fareCalculatorService = new FareDiscountCalculator();
+        fareCalculatorService.calculateFare(ticket, true);
+        assertEquals(true, ticket.getVehicleRegNumber());
+        assertEquals( (0.95 * Fare.BIKE_RATE_PER_HOUR) , ticket.getPrice());
+        assertThrows(IllegalArgumentException.class, () -> fareCalculatorService.calculateFare(ticket));
     }
 
 }
