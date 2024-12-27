@@ -4,6 +4,7 @@ import com.parkit.parkingsystem.constants.Fare;
 import com.parkit.parkingsystem.constants.ParkingType;
 import com.parkit.parkingsystem.model.ParkingSpot;
 import com.parkit.parkingsystem.model.Ticket;
+import com.parkit.parkingsystem.service.Fare30MinutesCalculator;
 import com.parkit.parkingsystem.service.FareCalculatorService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -134,8 +135,8 @@ public class FareCalculatorServiceTest {
         ticket.setInTime(inTime);
         ticket.setOutTime(outTime);
         ticket.setParkingSpot(parkingSpot);
+        fareCalculatorService = new Fare30MinutesCalculator();
         fareCalculatorService.calculateFare(ticket);
-        //assertEquals( (0.50 * Fare.CAR_RATE_PER_HOUR) , ticket.getPrice());
         assertEquals( (0.0 * Fare.CAR_RATE_PER_HOUR) , ticket.getPrice());
     }
 
@@ -149,8 +150,8 @@ public class FareCalculatorServiceTest {
         ticket.setInTime(inTime);
         ticket.setOutTime(outTime);
         ticket.setParkingSpot(parkingSpot);
+        fareCalculatorService = new Fare30MinutesCalculator();
         fareCalculatorService.calculateFare(ticket);
-        //assertEquals( (0.50 * Fare.CAR_RATE_PER_HOUR) , ticket.getPrice());
         assertEquals( (0.0 * Fare.BIKE_RATE_PER_HOUR) , ticket.getPrice());
     }
 

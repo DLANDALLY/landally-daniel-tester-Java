@@ -29,7 +29,7 @@ public class FareCalculatorService {
         }
     }
 
-    private double convertMillisecondToHour(Long milliseconds){
+    public double convertMillisecondToHour(Long milliseconds){
         return milliseconds / (60.0 * 60.0 * 1000.0);
     }
 }
