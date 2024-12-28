@@ -1,5 +1,7 @@
 /app/src/test/java/com/parkit/parkingsystem/integration/service/DataBasePrepareService.java
+/app/src/test/java/com/parkit/parkingsystem/service/Fare30MinutesCalculatorTest.java
 /app/src/test/java/com/parkit/parkingsystem/integration/ParkingDataBaseIT.java
 /app/src/test/java/com/parkit/parkingsystem/integration/config/DataBaseTestConfig.java
 /app/src/test/java/com/parkit/parkingsystem/FareCalculatorServiceTest.java
 /app/src/test/java/com/parkit/parkingsystem/ParkingServiceTest.java
+/app/src/test/java/com/parkit/parkingsystem/service/FareDiscountCalculatorTest.java

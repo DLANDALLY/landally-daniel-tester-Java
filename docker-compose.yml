@@ -30,7 +30,7 @@ services:
 
   # Service pour MySQL
   db:
-    image: mysql:8
+    image: mysql:8.0.17
     container_name: parkingsystem-db
     environment:
       MYSQL_ROOT_PASSWORD: rootroot
