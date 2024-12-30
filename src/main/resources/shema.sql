@@ -15,7 +15,7 @@ INSERT INTO parking (PARKING_NUMBER, TYPE, AVAILABLE) VALUES
 (6, 'BIKE', true),
 (7, 'CAR', true),
 (8, 'CAR', false),
-(9, 'Motorbike', true),
+(9, 'BIKE', true),
 (10, 'CAR', true);
 
 -- Création de la table ticket

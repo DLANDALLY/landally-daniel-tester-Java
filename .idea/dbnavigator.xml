@@ -17,14 +17,27 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="79a8ec3c-c1f3-45ed-b315-0c9862fefd84">
-      <console name="Connection" type="STANDARD" schema="" session="Main" />
+      <console name="Connection" type="STANDARD" schema="" session="Main"><![CDATA[select * from ticket
+select * from parking
+select min(PARKING_NUMBER) from parking where AVAILABLE = true and TYPE = 2
+update parking set Type=1 where TYPE= 'CAR'
+select * from parking
+update parking set Type=2 where TYPE= 'BIKE'
+select * from parking
+update parking set available = 0 where PARKING_NUMBER = 10
+update parking set available = 0 where PARKING_NUMBER = 9
+select * from parking
+select * from ticket
+select t.PARKING_NUMBER, t.ID, t.PRICE, t.IN_TIME, t.OUT_TIME, p.TYPE from ticket t,parking p where p.parking_number = t.parking_number and t.VEHICLE_REG_NUMBER='DA123AD' order by t.IN_TIME]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="79a8ec3c-c1f3-45ed-b315-0c9862fefd84" object-ref="consoles/Connection" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="79a8ec3c-c1f3-45ed-b315-0c9862fefd84" />
@@ -43,7 +56,7 @@
     <connections>
       <connection id="79a8ec3c-c1f3-45ed-b315-0c9862fefd84" active="true" signed="true">
         <database>
-          <name value="Connection" />
+          <name value="ParkingSystem" />
           <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />

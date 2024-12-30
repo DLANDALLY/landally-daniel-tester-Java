@@ -22,8 +22,9 @@ services:
     working_dir: /app
     volumes:
       - .:/app
-    #command: mvn clean install
-    command: ["mvn", "clean", "install", "-DskipTests"]
+      - ~/.m2:/root/.m2
+    command: mvn clean install test verify
+    #command: ["mvn", "clean", "install", "-DskipTests"]
     networks:
       - parkingsystem-network
 
