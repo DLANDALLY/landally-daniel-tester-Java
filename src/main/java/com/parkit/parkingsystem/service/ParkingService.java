@@ -34,7 +34,7 @@ public class ParkingService {
         try{
             ParkingSpot parkingSpot = getNextParkingNumberIfAvailable();
             if(parkingSpot !=null && parkingSpot.getId() > 0){
-                String vehicleRegNumber = getVehichleRegNumber();
+                String vehicleRegNumber = getVehicleRegNumber();
                 Ticket vehicleRegNumberBDD = ticketDAO.getTicket(vehicleRegNumber);
                 List<Ticket> tickets = ticketDAO.getNbTicket(vehicleRegNumber);
 
@@ -67,7 +67,7 @@ public class ParkingService {
         }
     }
 
-    private String getVehichleRegNumber() throws Exception {
+    public String getVehicleRegNumber() throws Exception {
         System.out.println("Please type the vehicle registration number and press enter key");
         return inputReaderUtil.readVehicleRegistrationNumber();
     }
@@ -112,14 +112,14 @@ public class ParkingService {
 
     public void processExitingVehicle() {
         try{
-            String vehicleRegNumber = getVehichleRegNumber();
+            String vehicleRegNumber = getVehicleRegNumber();
             Ticket ticket = ticketDAO.getTicket(vehicleRegNumber);
             int ticketSize = ticketDAO.getNbTicket(vehicleRegNumber).size();
 
             Date outTime = new Date();
             ticket.setOutTime(outTime);
 
-            if(ticketSize > 1){
+            if(ticketSize > 3){
                 fareDiscountCalculator.calculateFare(ticket);
             }else{
                 fareCalculatorService.calculateFare(ticket);

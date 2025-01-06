@@ -1,0 +1,17 @@
+@startuml
+class com.parkit.parkingsystem.service.ParkingService {
+- {static} Logger logger
+- {static} FareCalculatorService fareCalculatorService
+- {static} FareCalculatorService fareDiscountCalculator
+- InputReaderUtil inputReaderUtil
+- ParkingSpotDAO parkingSpotDAO
+- TicketDAO ticketDAO
++ void processIncomingVehicle()
++ String getVehichleRegNumber()
++ ParkingSpot getNextParkingNumberIfAvailable()
+- ParkingType getVehichleType()
++ void processExitingVehicle()
+}
+
+
+@enduml

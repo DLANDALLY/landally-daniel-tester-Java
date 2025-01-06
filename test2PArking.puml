@@ -1,0 +1,144 @@
+@startuml
+enum com.parkit.parkingsystem.constants.ParkingType {
++  CAR
++  BIKE
+}
+
+class com.parkit.parkingsystem.service.ParkingService {
+- {static} Logger logger
+- {static} FareCalculatorService fareCalculatorService
+- {static} FareCalculatorService fareDiscountCalculator
+- InputReaderUtil inputReaderUtil
+- ParkingSpotDAO parkingSpotDAO
+- TicketDAO ticketDAO
++ void processIncomingVehicle()
++ String getVehichleRegNumber()
++ ParkingSpot getNextParkingNumberIfAvailable()
+- ParkingType getVehichleType()
++ void processExitingVehicle()
+}
+
+
+class com.parkit.parkingsystem.constants.Fare {
++ {static} double BIKE_RATE_PER_HOUR
++ {static} double CAR_RATE_PER_HOUR
+}
+
+class com.parkit.parkingsystem.constants.DBConstants {
++ {static} String GET_NEXT_PARKING_SPOT
++ {static} String UPDATE_PARKING_SPOT
++ {static} String SAVE_TICKET
++ {static} String UPDATE_TICKET
++ {static} String GET_TICKET
++ {static} String GET_TICKETS
+}
+
+class com.parkit.parkingsystem.App {
+- {static} Logger logger
+~ {static} DataBaseConfig databaseConfig
++ {static} void main(String[])
+}
+
+
+class com.parkit.parkingsystem.service.InteractiveShell {
+- {static} Logger logger
++ {static} void loadInterface()
+- {static} void loadMenu()
+}
+
+
+class com.parkit.parkingsystem.service.FareDiscountCalculator {
++ void calculateFare(Ticket,boolean)
++ double applyDiscount(double,int,double)
+}
+
+class com.parkit.parkingsystem.model.Ticket {
+- int id
+- ParkingSpot parkingSpot
+- String vehicleRegNumber
+- double price
+- Date inTime
+- Date outTime
++ int getId()
++ void setId(int)
++ ParkingSpot getParkingSpot()
++ void setParkingSpot(ParkingSpot)
++ String getVehicleRegNumber()
++ void setVehicleRegNumber(String)
++ double getPrice()
++ void setPrice(double)
++ Date getInTime()
++ void setInTime(Date)
++ Date getOutTime()
++ void setOutTime(Date)
+}
+
+
+class com.parkit.parkingsystem.dao.ParkingSpotDAO {
+- {static} Logger logger
++ DataBaseConfig dataBaseConfig
++ int getNextAvailableSlot(ParkingType)
++ boolean updateParking(ParkingSpot)
+}
+
+
+class com.parkit.parkingsystem.util.InputReaderUtil {
+- {static} Scanner scan
+- {static} Logger logger
++ int readSelection()
++ String readVehicleRegistrationNumber()
+}
+
+
+class com.parkit.parkingsystem.dao.TicketDAO {
+- {static} Logger logger
++ DataBaseConfig dataBaseConfig
++ boolean saveTicket(Ticket)
++ Ticket getTicket(String)
++ boolean updateTicket(Ticket)
++ List<Ticket> getNbTicket(String)
+}
+
+
+class com.parkit.parkingsystem.service.FareCalculatorService {
++ void calculateFare(Ticket)
++ double getDuration(Ticket)
++ double convertMillisecondToHour(Long)
++ double typeRatePerHour(Ticket)
+}
+
+class com.parkit.parkingsystem.model.ParkingSpot {
+- int number
+- ParkingType parkingType
+- boolean isAvailable
++ int getId()
++ void setId(int)
++ ParkingType getParkingType()
++ void setParkingType(ParkingType)
++ boolean isAvailable()
++ void setAvailable(boolean)
++ boolean equals(Object)
++ int hashCode()
+}
+
+
+class com.parkit.parkingsystem.service.Fare30MinutesCalculator {
++ void calculateFare(Ticket)
++ void getFareFree(Ticket,double,double)
+}
+
+class com.parkit.parkingsystem.config.DataBaseConfig {
+- {static} Logger logger
++ Connection getConnection()
++ void closeConnection(Connection)
++ void closePreparedStatement(PreparedStatement)
++ void closeResultSet(ResultSet)
++ void executeSqlFromFile(String)
+}
+
+
+
+
+com.parkit.parkingsystem.service.Fare30MinutesCalculator <|-- com.parkit.parkingsystem.service.FareDiscountCalculator
+com.parkit.parkingsystem.service.FareCalculatorService <|-- com.parkit.parkingsystem.service.Fare30MinutesCalculator
+@enduml
