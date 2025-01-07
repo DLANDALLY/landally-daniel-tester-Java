@@ -48,15 +48,13 @@ public class ParkingServiceTest {
     public void setUpPerTest() throws Exception {
         fareCalculatorService = new Fare30MinutesCalculator();
         fareDiscountCalculator = new FareDiscountCalculator();
+        ticket = new Ticket();
+        Date inTime = new Date();
 
-        String vehicleRegNumber = "AZ123AZ";
         inputReaderUtil.readSelection();
         parkingService.getVehicleRegNumber();
 
-        ticket = new Ticket();
-        Date inTime = new Date();
         inTime.setTime( System.currentTimeMillis() - (  60 * 60 * 1000) );
-        Date outTime = new Date();
         parkingSpot = new ParkingSpot(1, ParkingType.CAR,false);
         parkingSpot.setId(1);
 
@@ -162,8 +160,6 @@ public class ParkingServiceTest {
 
     @Test
     public void testGetNextParkingNumberIfAvailableParkingNumberNotFound(){
-        //test de l’appel de la méthode getNextParkingNumberIfAvailable() avec pour résultat aucun spot disponible
-        // (la méthode renvoie null).
         when(inputReaderUtil.readSelection()).thenReturn(1);
         when(parkingSpotDAO.getNextAvailableSlot(ParkingType.CAR)).thenReturn(0);
 
@@ -173,16 +169,7 @@ public class ParkingServiceTest {
 
     @Test
     public void testGetNextParkingNumberIfAvailableParkingNumberWrongArgument(){
-        //test de l’appel de la méthode getNextParkingNumberIfAvailable() avec pour résultat aucun spot
-        // (la méthode renvoie null) car l’argument saisi par l’utilisateur concernant le type de véhicule est erroné
-        // (par exemple, l’utilisateur a saisi 3).
-
         when(inputReaderUtil.readSelection()).thenReturn(3);
-        when(parkingSpotDAO.getNextAvailableSlot(ParkingType.CAR)).thenReturn(1);
         assertNull(parkingService.getNextParkingNumberIfAvailable());
     }
-
-
-
-
 }
