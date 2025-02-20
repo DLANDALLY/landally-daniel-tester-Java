@@ -13,9 +13,9 @@ services:
       - parkingsystem-network
     depends_on:
       - db
-      - maven
+      #- maven
 
-  # Service pour Maven
+   # Service pour Maven
   maven:
     image: maven:3.8.5-openjdk-8
     container_name: parkingsystem-maven
@@ -23,15 +23,17 @@ services:
     volumes:
       - .:/app
       - ~/.m2:/root/.m2
-    command: mvn clean install test verify
-    #command: ["mvn", "clean", "install", "-DskipTests"]
+    #command: mvn clean install test verify
+    #command: ["mvn", "clean", "install", "test", "verify"]
+    command: ["mvn", "verify"]
     networks:
       - parkingsystem-network
 
 
   # Service pour MySQL
   db:
-    image: mysql:8.0.17
+ #   image: mysql:8.0.17
+    image: mysql:9.0
     container_name: parkingsystem-db
     environment:
       MYSQL_ROOT_PASSWORD: rootroot

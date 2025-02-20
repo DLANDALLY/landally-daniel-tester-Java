@@ -51,31 +51,31 @@ public class DataBaseConfig {
         }
     }
 
-    public void executeSqlFromFile(String fileName) {
-        try (Connection connection = getConnection();
-             Statement statement = connection.createStatement()) {
-
-            // Utiliser le ClassLoader pour charger le fichier SQL depuis les ressources
-            BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(DataBaseConfig.class.getClassLoader().getResourceAsStream(fileName))
-            );
-
-            // Lire tout le contenu du fichier SQL
-            StringBuilder sqlBuilder = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                sqlBuilder.append(line).append("\n");
-            }
-            String sql = sqlBuilder.toString();
-
-            // Exécuter le fichier SQL
-            statement.executeUpdate(sql);
-            System.out.println("Tables et données fictives créées avec succès !");
-        } catch (SQLException | NullPointerException e) {
-            e.printStackTrace();
-            System.out.println("Erreur : Impossible de charger ou exécuter le fichier SQL.");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public void executeSqlFromFile(String fileName) {
+//        try (Connection connection = getConnection();
+//             Statement statement = connection.createStatement()) {
+//
+//            // Utiliser le ClassLoader pour charger le fichier SQL depuis les ressources
+//            BufferedReader reader = new BufferedReader(
+//                    new InputStreamReader(DataBaseConfig.class.getClassLoader().getResourceAsStream(fileName))
+//            );
+//
+//            // Lire tout le contenu du fichier SQL
+//            StringBuilder sqlBuilder = new StringBuilder();
+//            String line;
+//            while ((line = reader.readLine()) != null) {
+//                sqlBuilder.append(line).append("\n");
+//            }
+//            String sql = sqlBuilder.toString();
+//
+//            // Exécuter le fichier SQL
+//            statement.executeUpdate(sql);
+//            System.out.println("Tables et données fictives créées avec succès !");
+//        } catch (SQLException | NullPointerException e) {
+//            e.printStackTrace();
+//            System.out.println("Erreur : Impossible de charger ou exécuter le fichier SQL.");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

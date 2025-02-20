@@ -7,16 +7,16 @@ CREATE TABLE IF NOT EXISTS parking (
 
 -- Insertion de données fictives dans parking
 INSERT INTO parking (PARKING_NUMBER, TYPE, AVAILABLE) VALUES
-(1, 'CAR', true),
-(2, 'CAR', false),
-(3, 'BIKE', true),
-(4, 'CAR', true),
-(5, 'CAR', false),
-(6, 'BIKE', true),
-(7, 'CAR', true),
-(8, 'CAR', false),
-(9, 'BIKE', true),
-(10, 'CAR', true);
+(1, 'CAR', 0),
+(2, 'CAR', 1),
+(3, 'BIKE', 0),
+(4, 'BIKE', 1),
+(5, 'BIKE', 1),
+(6, 'CAR', 0),
+(7, 'CAR', 0),
+(8, 'CAR', 1),
+(9, 'BIKE', 0),
+(10, 'CAR', 0);
 
 -- Création de la table ticket
 CREATE TABLE IF NOT EXISTS ticket (

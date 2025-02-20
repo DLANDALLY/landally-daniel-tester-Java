@@ -4,7 +4,6 @@ import com.parkit.parkingsystem.constants.Fare;
 import com.parkit.parkingsystem.constants.ParkingType;
 import com.parkit.parkingsystem.model.ParkingSpot;
 import com.parkit.parkingsystem.model.Ticket;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -67,5 +66,30 @@ class Fare30MinutesCalculatorTest {
         ticket.setParkingSpot(parkingSpot);
         fareCalculatorService.calculateFare(ticket);
         assertEquals( (0.0 * Fare.BIKE_RATE_PER_HOUR) , ticket.getPrice());
+    }
+
+
+    @Test
+    public void calculateFareThrow(){
+        ticket.setOutTime(null);
+        assertThrows(NullPointerException.class, () -> fareCalculatorService.calculateFare(ticket));
+    }
+
+    @Test
+    public void getNotFareFree(){
+        Fare30MinutesCalculator service = new Fare30MinutesCalculator();
+        Date inTime = new Date();
+        inTime.setTime( System.currentTimeMillis() - (  30 * 60 * 1000) );
+        Date outTime = new Date();
+        ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.BIKE,false);
+        double duration = 0.3;
+        double fareFree = 0.5;
+        ticket.setInTime(inTime);
+        ticket.setOutTime(outTime);
+        ticket.setParkingSpot(parkingSpot);
+
+
+        service.getFareFree(ticket, fareFree, duration);
+        assertEquals(0.0, ticket.getPrice());
     }
 }

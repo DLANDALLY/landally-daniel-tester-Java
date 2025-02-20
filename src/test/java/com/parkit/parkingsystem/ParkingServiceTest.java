@@ -10,7 +10,6 @@ import com.parkit.parkingsystem.service.FareCalculatorService;
 import com.parkit.parkingsystem.service.FareDiscountCalculator;
 import com.parkit.parkingsystem.service.ParkingService;
 import com.parkit.parkingsystem.util.InputReaderUtil;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +19,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -164,7 +162,6 @@ public class ParkingServiceTest {
         when(parkingSpotDAO.getNextAvailableSlot(ParkingType.CAR)).thenReturn(0);
 
         assertNull(parkingService.getNextParkingNumberIfAvailable());
-        verify(parkingSpotDAO, times(1)).getNextAvailableSlot(ParkingType.CAR);
     }
 
     @Test

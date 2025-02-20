@@ -7,7 +7,8 @@ public class Fare30MinutesCalculator extends FareCalculatorService{
     public void calculateFare(Ticket ticket) {
         double fareFree = 0.5;
         if( (ticket.getOutTime() == null) || (ticket.getOutTime().before(ticket.getInTime())) )
-            throw new IllegalArgumentException("Out time provided is incorrect:"+ticket.getOutTime().toString());
+            throw new NullPointerException("Out time provided is incorrect:"+ticket.getOutTime().toString());
+
 
         double duration = getDuration(ticket);
         getFareFree(ticket, fareFree, duration);

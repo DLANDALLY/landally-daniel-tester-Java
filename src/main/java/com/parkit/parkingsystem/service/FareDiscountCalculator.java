@@ -1,7 +1,5 @@
 package com.parkit.parkingsystem.service;
 
-import com.parkit.parkingsystem.constants.Fare;
-import com.parkit.parkingsystem.dao.TicketDAO;
 import com.parkit.parkingsystem.model.Ticket;
 
 public class FareDiscountCalculator extends Fare30MinutesCalculator{
@@ -14,7 +12,6 @@ public class FareDiscountCalculator extends Fare30MinutesCalculator{
     public void calculateFare(Ticket ticket, boolean discount) {
         double duration = getDuration(ticket);
         if (!discount || duration <= 0.5) {
-            System.out.println("++ 30 mn free ++");
             super.calculateFare(ticket);
             return;
         }
@@ -32,7 +29,12 @@ public class FareDiscountCalculator extends Fare30MinutesCalculator{
      * @return The discounted price.
      */
     public double applyDiscount(double originalPrice, int discountPercentage, double typeRatePerHour) {
-        return (typeRatePerHour - (typeRatePerHour * discountPercentage / 100)) * originalPrice;
+        double price = (typeRatePerHour - (typeRatePerHour * discountPercentage / 100)) * originalPrice;
+        return aroud(price);
+    }
+
+    private double aroud(double originalPrice){
+        return Math.round(originalPrice * 100.0) / 100.0;
     }
 
 }

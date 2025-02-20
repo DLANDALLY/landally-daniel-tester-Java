@@ -91,7 +91,6 @@ public class TicketDAO {
 
     public List<Ticket> getNbTicket(String vehicleRegNumber) {
         Connection con = null;
-        Ticket ticket = null;
         List<Ticket> tickets = new ArrayList<>();
         try {
             con = dataBaseConfig.getConnection();
@@ -101,7 +100,7 @@ public class TicketDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                ticket = new Ticket();
+                Ticket ticket = new Ticket();
                 ParkingSpot parkingSpot = new ParkingSpot(rs.getInt(1), ParkingType.valueOf(rs.getString(6)),false);
                 ticket.setParkingSpot(parkingSpot);
                 ticket.setId(rs.getInt(2));
@@ -117,7 +116,7 @@ public class TicketDAO {
             logger.error("Error fetching next available slot",ex);
         }finally {
             dataBaseConfig.closeConnection(con);
-            return tickets;
         }
+        return tickets;
     }
 }

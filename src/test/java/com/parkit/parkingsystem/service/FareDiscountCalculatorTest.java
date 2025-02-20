@@ -26,9 +26,6 @@ class FareDiscountCalculatorTest {
         ticket = new Ticket();
     }
 
-
-
-
     @Test
     public void calculateFareCarWithDiscountDescription(){
         Date inTime = new Date();
@@ -42,7 +39,7 @@ class FareDiscountCalculatorTest {
         ticket.setVehicleRegNumber("AA-123-BB");
 
         fareDiscountCalculator.calculateFare(ticket, true);
-        assertEquals( ( 1.425) , ticket.getPrice());
+        assertEquals( ( 1.43) , ticket.getPrice());
         // PAs endessous de 30 minutes
         //assertThrows(IllegalArgumentException.class, () -> fareCalculatorService.calculateFare(ticket));
     }
@@ -51,7 +48,7 @@ class FareDiscountCalculatorTest {
     public void calculateFareBikeWithDiscountDescription(){
         Date inTime = new Date();
         inTime.setTime( System.currentTimeMillis() - (  60 * 60 * 1000) );
-        Date halfHour = new Date();//TODO creer un teste pour ca
+        Date halfHour = new Date();
         halfHour.setTime( System.currentTimeMillis() - (  30 * 60 * 1000) ); //30 munites
         Date outTime = new Date();
         ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.BIKE,false);
@@ -62,6 +59,7 @@ class FareDiscountCalculatorTest {
         ticket.setVehicleRegNumber("AA-123-BB");
 
         fareDiscountCalculator.calculateFare(ticket, true);
+
         assertEquals( (0.95 * Fare.BIKE_RATE_PER_HOUR) , ticket.getPrice());
         //assertThrows(IllegalArgumentException.class, () -> fareDiscountCalculator.calculateFare(ticket));
     }
@@ -76,8 +74,9 @@ class FareDiscountCalculatorTest {
 
         double discountFare = fare - ((fare * discountPercentage) /100);
         double expected = originalPrice * discountFare;
+        double expectedRoud = Math.round(expected * 100.0) / 100.0;
 
         double result = fareDiscountCalculator.applyDiscount(originalPrice, discountPercentage, fare);
-        assertEquals(expected, result);
+        assertEquals(expectedRoud, result);
     }
 }

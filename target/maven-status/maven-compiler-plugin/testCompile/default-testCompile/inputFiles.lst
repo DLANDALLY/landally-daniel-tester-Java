@@ -1,7 +1,10 @@
-/app/src/test/java/com/parkit/parkingsystem/integration/service/DataBasePrepareService.java
-/app/src/test/java/com/parkit/parkingsystem/service/Fare30MinutesCalculatorTest.java
-/app/src/test/java/com/parkit/parkingsystem/integration/ParkingDataBaseIT.java
-/app/src/test/java/com/parkit/parkingsystem/integration/config/DataBaseTestConfig.java
-/app/src/test/java/com/parkit/parkingsystem/FareCalculatorServiceTest.java
-/app/src/test/java/com/parkit/parkingsystem/ParkingServiceTest.java
-/app/src/test/java/com/parkit/parkingsystem/service/FareDiscountCalculatorTest.java
+/Users/landally/OpenClassrooms/Projet_4/parkingsystem/src/test/java/com/parkit/parkingsystem/integration/service/DataBasePrepareService.java
+/Users/landally/OpenClassrooms/Projet_4/parkingsystem/src/test/java/com/parkit/parkingsystem/service/Fare30MinutesCalculatorTest.java
+/Users/landally/OpenClassrooms/Projet_4/parkingsystem/src/test/java/com/parkit/parkingsystem/service/FareDiscountCalculatorTest.java
+/Users/landally/OpenClassrooms/Projet_4/parkingsystem/src/test/java/com/parkit/parkingsystem/integration/ParkingDataBaseIT.java
+/Users/landally/OpenClassrooms/Projet_4/parkingsystem/src/test/java/com/parkit/parkingsystem/FareCalculatorServiceTest.java
+/Users/landally/OpenClassrooms/Projet_4/parkingsystem/src/test/java/com/parkit/parkingsystem/dao/TicketDAOTest.java
+/Users/landally/OpenClassrooms/Projet_4/parkingsystem/src/test/java/com/parkit/parkingsystem/dao/ParkingSpotDAOTest.java
+/Users/landally/OpenClassrooms/Projet_4/parkingsystem/src/test/java/com/parkit/parkingsystem/ParkingServiceTest.java
+/Users/landally/OpenClassrooms/Projet_4/parkingsystem/src/test/java/com/parkit/parkingsystem/service/InteractiveShellTest.java
+/Users/landally/OpenClassrooms/Projet_4/parkingsystem/src/test/java/com/parkit/parkingsystem/integration/config/DataBaseTestConfig.java

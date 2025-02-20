@@ -9,6 +9,24 @@
     <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
+  <component name="DBNavigator.Project.DataExportManager">
+    <export-instructions>
+      <create-header value="true" />
+      <friendly-headers value="false" />
+      <quote-values-containing-separator value="true" />
+      <quote-all-values value="false" />
+      <value-separator value="" />
+      <begin-quote value="&quot;" />
+      <end-quote value="&quot;" />
+      <file-name value="" />
+      <file-location value="" />
+      <scope value="GLOBAL" />
+      <destination value="FILE" />
+      <format value="EXCEL" />
+      <charset value="UTF-8" />
+      <charset value="UTF-8" />
+    </export-instructions>
+  </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
@@ -19,6 +37,7 @@
     <connection id="79a8ec3c-c1f3-45ed-b315-0c9862fefd84">
       <console name="Connection" type="STANDARD" schema="prod" session="Main"><![CDATA[select * from ticket
 select * from parking
+
 select min(PARKING_NUMBER) from parking where AVAILABLE = 2 and TYPE = 2
 update parking set Type=1 where TYPE= 'CAR'
 select * from parking
@@ -27,11 +46,28 @@ update parking set Type=1 where TYPE= 'Motorbike'
 select * from parking
 update parking set available = 0 where PARKING_NUMBER = 10
 update parking set available = 0 where PARKING_NUMBER = 9
-select * from parking
-select * from ticket
+select * from test.parking
+select * from test.ticket
 select t.PARKING_NUMBER, t.ID, t.PRICE, t.IN_TIME, t.OUT_TIME, p.TYPE from ticket t,parking p where p.parking_number = t.parking_number and t.VEHICLE_REG_NUMBER='DA123AD' order by t.IN_TIME
 update parking set available = 1 where PARKING_NUMBER = 1
-select min(PARKING_NUMBER) from parking where AVAILABLE = 1 and TYPE = 2]]></console>
+select min(PARKING_NUMBER) from parking where AVAILABLE = 1 and TYPE = 2
+select * from parking
+
+update test.parking set Type=1 where TYPE= 'CAR'
+update test.parking set Type=2 where TYPE= 'BIKE'
+update test.parking set Type=1 where TYPE= 'Motorbike'
+select * from test.parking
+select * from test.ticket
+
+select t.PARKING_NUMBER, t.ID, t.PRICE, t.IN_TIME, t.OUT_TIME, p.TYPE from ticket t,parking p where p.parking_number = t.parking_number and t.VEHICLE_REG_NUMBER=? order by t.IN_TIME  limit 1
+
+select t.PARKING_NUMBER, t.ID, t.PRICE, t.IN_TIME, t.OUT_TIME, p.TYPE 
+from ticket t,parking p 
+where p.parking_number = t.parking_number 
+and t.VEHICLE_REG_NUMBER='CD234EF'
+order by t.IN_TIME  
+limit 1]]></console>
+      <console name="ParkingSystem" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -42,6 +78,19 @@ select min(PARKING_NUMBER) from parking where AVAILABLE = 1 and TYPE = 2]]></con
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="79a8ec3c-c1f3-45ed-b315-0c9862fefd84" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="79a8ec3c-c1f3-45ed-b315-0c9862fefd84" dataset="prod.parking" active-filter-id="eb2bf84b-a8de-4b2c-97f4-ee7111618547">
+      <filter id="eb2bf84b-a8de-4b2c-97f4-ee7111618547" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="PARKING_NUMBER" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
+    <filter-actions connection-id="79a8ec3c-c1f3-45ed-b315-0c9862fefd84" dataset="test.parking" active-filter-id="e0c94ece-a814-4bfc-b0fa-90e9ba4ba367">
+      <filter id="e0c94ece-a814-4bfc-b0fa-90e9ba4ba367" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="PARKING_NUMBER" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
+    <filter-actions connection-id="79a8ec3c-c1f3-45ed-b315-0c9862fefd84" dataset="test.ticket" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
@@ -61,7 +110,7 @@ select min(PARKING_NUMBER) from parking where AVAILABLE = 1 and TYPE = 2]]></con
           <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
-          <database-version value="8.0" />
+          <database-version value="9.0" />
           <driver-source value="BUNDLED" />
           <driver-library value="" />
           <driver value="" />

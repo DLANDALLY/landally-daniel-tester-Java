@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataBaseConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">parking-system</a> &gt; <a href="index.source.html" class="el_package">com.parkit.parkingsystem.config</a> &gt; <span class="el_source">DataBaseConfig.java</span></div><h1>DataBaseConfig.java</h1><pre class="source lang-java linenums">package com.parkit.parkingsystem.config;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataBaseConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">parking-system</a> &gt; <a href="index.source.html" class="el_package">com.parkit.parkingsystem.config</a> &gt; <span class="el_source">DataBaseConfig.java</span></div><h1>DataBaseConfig.java</h1><pre class="source lang-java linenums">package com.parkit.parkingsystem.config;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,76 +7,76 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.sql.*;
 
-<span class="nc" id="L10">public class DataBaseConfig {</span>
+<span class="fc" id="L10">public class DataBaseConfig {</span>
 
-<span class="nc" id="L12">    private static final Logger logger = LogManager.getLogger(&quot;DataBaseConfig&quot;);</span>
+<span class="fc" id="L12">    private static final Logger logger = LogManager.getLogger(&quot;DataBaseConfig&quot;);</span>
 
     public Connection getConnection() throws ClassNotFoundException, SQLException {
-<span class="nc" id="L15">        logger.info(&quot;Create DB connection&quot;);</span>
-<span class="nc" id="L16">        Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);</span>
-<span class="nc" id="L17">        return DriverManager.getConnection(</span>
+<span class="fc" id="L15">        logger.info(&quot;Create DB connection&quot;);</span>
+<span class="fc" id="L16">        Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);</span>
+<span class="fc" id="L17">        return DriverManager.getConnection(</span>
                 &quot;jdbc:mysql://localhost:3306/prod&quot;,&quot;root&quot;,&quot;rootroot&quot;);
     }
 
     public void closeConnection(Connection con){
-<span class="nc bnc" id="L22" title="All 2 branches missed.">        if(con!=null){</span>
+<span class="pc bpc" id="L22" title="1 of 2 branches missed.">        if(con!=null){</span>
             try {
-<span class="nc" id="L24">                con.close();</span>
-<span class="nc" id="L25">                logger.info(&quot;Closing DB connection&quot;);</span>
+<span class="fc" id="L24">                con.close();</span>
+<span class="fc" id="L25">                logger.info(&quot;Closing DB connection&quot;);</span>
 <span class="nc" id="L26">            } catch (SQLException e) {</span>
 <span class="nc" id="L27">                logger.error(&quot;Error while closing connection&quot;,e);</span>
-<span class="nc" id="L28">            }</span>
+<span class="fc" id="L28">            }</span>
         }
-<span class="nc" id="L30">    }</span>
+<span class="fc" id="L30">    }</span>
 
     public void closePreparedStatement(PreparedStatement ps) {
-<span class="nc bnc" id="L33" title="All 2 branches missed.">        if(ps!=null){</span>
+<span class="pc bpc" id="L33" title="1 of 2 branches missed.">        if(ps!=null){</span>
             try {
-<span class="nc" id="L35">                ps.close();</span>
-<span class="nc" id="L36">                logger.info(&quot;Closing Prepared Statement&quot;);</span>
+<span class="fc" id="L35">                ps.close();</span>
+<span class="fc" id="L36">                logger.info(&quot;Closing Prepared Statement&quot;);</span>
 <span class="nc" id="L37">            } catch (SQLException e) {</span>
 <span class="nc" id="L38">                logger.error(&quot;Error while closing prepared statement&quot;,e);</span>
-<span class="nc" id="L39">            }</span>
+<span class="fc" id="L39">            }</span>
         }
-<span class="nc" id="L41">    }</span>
+<span class="fc" id="L41">    }</span>
 
     public void closeResultSet(ResultSet rs) {
-<span class="nc bnc" id="L44" title="All 2 branches missed.">        if(rs!=null){</span>
+<span class="pc bpc" id="L44" title="1 of 2 branches missed.">        if(rs!=null){</span>
             try {
-<span class="nc" id="L46">                rs.close();</span>
-<span class="nc" id="L47">                logger.info(&quot;Closing Result Set&quot;);</span>
+<span class="fc" id="L46">                rs.close();</span>
+<span class="fc" id="L47">                logger.info(&quot;Closing Result Set&quot;);</span>
 <span class="nc" id="L48">            } catch (SQLException e) {</span>
 <span class="nc" id="L49">                logger.error(&quot;Error while closing result set&quot;,e);</span>
-<span class="nc" id="L50">            }</span>
+<span class="fc" id="L50">            }</span>
         }
-<span class="nc" id="L52">    }</span>
+<span class="fc" id="L52">    }</span>
 
-    public void executeSqlFromFile(String fileName) {
-<span class="nc" id="L55">        try (Connection connection = getConnection();</span>
-<span class="nc" id="L56">             Statement statement = connection.createStatement()) {</span>
-
-            // Utiliser le ClassLoader pour charger le fichier SQL depuis les ressources
-<span class="nc" id="L59">            BufferedReader reader = new BufferedReader(</span>
-<span class="nc" id="L60">                    new InputStreamReader(DataBaseConfig.class.getClassLoader().getResourceAsStream(fileName))</span>
-            );
-
-            // Lire tout le contenu du fichier SQL
-<span class="nc" id="L64">            StringBuilder sqlBuilder = new StringBuilder();</span>
-            String line;
-<span class="nc bnc" id="L66" title="All 2 branches missed.">            while ((line = reader.readLine()) != null) {</span>
-<span class="nc" id="L67">                sqlBuilder.append(line).append(&quot;\n&quot;);</span>
-            }
-<span class="nc" id="L69">            String sql = sqlBuilder.toString();</span>
-
-            // Exécuter le fichier SQL
-<span class="nc" id="L72">            statement.executeUpdate(sql);</span>
-<span class="nc" id="L73">            System.out.println(&quot;Tables et données fictives créées avec succès !&quot;);</span>
-<span class="nc" id="L74">        } catch (SQLException | NullPointerException e) {</span>
-<span class="nc" id="L75">            e.printStackTrace();</span>
-<span class="nc" id="L76">            System.out.println(&quot;Erreur : Impossible de charger ou exécuter le fichier SQL.&quot;);</span>
-<span class="nc" id="L77">        } catch (Exception e) {</span>
-<span class="nc" id="L78">            e.printStackTrace();</span>
-<span class="nc" id="L79">        }</span>
-<span class="nc" id="L80">    }</span>
+//    public void executeSqlFromFile(String fileName) {
+//        try (Connection connection = getConnection();
+//             Statement statement = connection.createStatement()) {
+//
+//            // Utiliser le ClassLoader pour charger le fichier SQL depuis les ressources
+//            BufferedReader reader = new BufferedReader(
+//                    new InputStreamReader(DataBaseConfig.class.getClassLoader().getResourceAsStream(fileName))
+//            );
+//
+//            // Lire tout le contenu du fichier SQL
+//            StringBuilder sqlBuilder = new StringBuilder();
+//            String line;
+//            while ((line = reader.readLine()) != null) {
+//                sqlBuilder.append(line).append(&quot;\n&quot;);
+//            }
+//            String sql = sqlBuilder.toString();
+//
+//            // Exécuter le fichier SQL
+//            statement.executeUpdate(sql);
+//            System.out.println(&quot;Tables et données fictives créées avec succès !&quot;);
+//        } catch (SQLException | NullPointerException e) {
+//            e.printStackTrace();
+//            System.out.println(&quot;Erreur : Impossible de charger ou exécuter le fichier SQL.&quot;);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
