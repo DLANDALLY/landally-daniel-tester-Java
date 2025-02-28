@@ -20,7 +20,6 @@ public class FareDiscountCalculator extends Fare30MinutesCalculator{
         ticket.setPrice(applyDiscount(ticket.getPrice(), 5, typeRatePerHour(ticket)));
     }
 
-
     /**
      * Applies a discount to the original price of a ticket.
      * @param originalPrice The original price of the ticket.
@@ -36,5 +35,4 @@ public class FareDiscountCalculator extends Fare30MinutesCalculator{
     private double aroud(double originalPrice){
         return Math.round(originalPrice * 100.0) / 100.0;
     }
-
 }

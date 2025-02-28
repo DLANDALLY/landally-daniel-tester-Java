@@ -87,9 +87,8 @@ class Fare30MinutesCalculatorTest {
         ticket.setInTime(inTime);
         ticket.setOutTime(outTime);
         ticket.setParkingSpot(parkingSpot);
-
-
         service.getFareFree(ticket, fareFree, duration);
+
         assertEquals(0.0, ticket.getPrice());
     }
 }

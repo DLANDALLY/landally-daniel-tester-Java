@@ -13,11 +13,9 @@ import java.util.Date;
 import java.util.List;
 
 public class ParkingService {
-
     private static final Logger logger = LogManager.getLogger("ParkingService");
     private static FareCalculatorService fareCalculatorService = new Fare30MinutesCalculator();
     private static FareDiscountCalculator fareDiscountCalculator = new FareDiscountCalculator();
-
     private InputReaderUtil inputReaderUtil;
     private ParkingSpotDAO parkingSpotDAO;
     private  TicketDAO ticketDAO;
@@ -42,7 +40,6 @@ public class ParkingService {
                 Date inTime = new Date();
                 Ticket ticket = new Ticket();
                 //ID, PARKING_NUMBER, VEHICLE_REG_NUMBER, PRICE, IN_TIME, OUT_TIME)
-                //ticket.setId(ticketID);
                 if (tickets.size() > 2){
                     ticket = vehicleRegNumberBDD;
                     System.out.println("Heureux de vous revoir ! "+ vehicleRegNumberBDD.getVehicleRegNumber() +"  En tant qu’utilisateur régulier de notre parking, vous allez obtenir une remise de 5%");

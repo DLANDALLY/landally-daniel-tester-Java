@@ -12,7 +12,6 @@ class InteractiveShellTest {
     void shouldLoadInterface() {
         InputReaderUtil inputReaderUtil = mock(InputReaderUtil.class);
         ParkingService parkingService = mock(ParkingService.class);
-
         when(inputReaderUtil.readSelection()).thenReturn(3);
 
         InteractiveShell parkingSystem;

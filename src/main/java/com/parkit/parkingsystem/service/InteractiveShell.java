@@ -7,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class InteractiveShell {
-
     private static final Logger logger = LogManager.getLogger("InteractiveShell");
 
     public static void loadInterface(){
@@ -48,5 +47,4 @@ public class InteractiveShell {
         System.out.println("2 Vehicle Exiting - Generate Ticket Price");
         System.out.println("3 Shutdown System");
     }
-
 }
