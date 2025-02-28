@@ -7,13 +7,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class TicketDAOTest {
-    private TicketDAO ticketDAO = new TicketDAO();
+    private TicketDAO ticketDAO;
 
+    @BeforeEach
+    void setUp() {
+        ticketDAO = new TicketDAO();
+    }
 
     @Test
     void shouldSaveTicket() {
@@ -25,7 +28,6 @@ class TicketDAOTest {
         ticket.setVehicleRegNumber("JKL012");
         ticket.setPrice(10);
         ticket.setInTime(inTime);
-        System.out.println("## intime = " + inTime);
         ticket.setOutTime(new Date());
         ticketDAO.saveTicket(ticket);
 
@@ -35,17 +37,19 @@ class TicketDAOTest {
 
     @Test
     void shouldFindTicket() {
-        Ticket ticket = ticketDAO.getTicket("DEF456");
         Date inTime = new Date();
         inTime.setTime( System.currentTimeMillis() - (  60 * 60 * 1000) );
 
         Ticket ticket1 = new Ticket();
         ticket1.setId(2);
         ticket1.setParkingSpot(new ParkingSpot(2, ParkingType.BIKE, false));
-        ticket1.setVehicleRegNumber("DEF456");
+        ticket1.setVehicleRegNumber("DA321DA");
         ticket1.setPrice(5);
         ticket1.setInTime(inTime);
         ticket1.setOutTime(new Date());
+        ticketDAO.saveTicket(ticket1);
+
+        Ticket ticket = ticketDAO.getTicket("DA321DA");
 
         assertEquals(ticket1.getVehicleRegNumber(), ticket.getVehicleRegNumber());
     }
@@ -55,25 +59,30 @@ class TicketDAOTest {
         Date inTime = new Date();
         inTime.setTime( System.currentTimeMillis() - (  60 * 60 * 1000) );
 
-        Ticket ticket = ticketDAO.getTicket("DEF456");
-        ticket.setParkingSpot(new ParkingSpot(2, ParkingType.BIKE, false));
-        ticket.setVehicleRegNumber("DEF456");
-        ticket.setPrice(12);
-        ticket.setInTime(inTime);
-        ticket.setOutTime(new Date());
-        System.out.println("## UpDate Ticket getTicket() => " + ticket.toString());
+        Ticket ticket = ticketDAO.getTicket("KL890MN");
+        ticket.setPrice(120.0);
         ticketDAO.updateTicket(ticket);
 
-        Ticket updatedTicket = ticketDAO.getTicket("DEF456");
-        System.out.println("## UpdateTicket : "+ updatedTicket.getPrice());
-        assertEquals(12, updatedTicket.getPrice());
+        assertEquals(120.0, ticketDAO.getTicket("KL890MN").getPrice());
     }
 
     @Test
     void shouldGetTicketsByVehicleRegNumber() {
-        List<Ticket> tickets = ticketDAO.getNbTicket("DLY190");
+        double nticket = ticketDAO.getNbTicket("AB123CD").size() + 1;
 
-        assertEquals(12, tickets.size());
+        Date inTime = new Date();
+        inTime.setTime( System.currentTimeMillis() - (  60 * 60 * 1000) );
+
+        Ticket ticket = new Ticket();
+        ticket.setId(2);
+        ticket.setParkingSpot(new ParkingSpot(2, ParkingType.BIKE, false));
+        ticket.setVehicleRegNumber("AB123CD");
+        ticket.setPrice(5);
+        ticket.setInTime(inTime);
+        ticket.setOutTime(new Date());
+        ticketDAO.saveTicket(ticket);
+
+        assertEquals(nticket, ticketDAO.getNbTicket("AB123CD").size());
     }
 
 }

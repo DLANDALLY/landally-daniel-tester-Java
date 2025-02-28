@@ -15,10 +15,8 @@ import java.util.List;
 public class ParkingService {
 
     private static final Logger logger = LogManager.getLogger("ParkingService");
-
-    //private static FareCalculatorService fareCalculatorService = new FareCalculatorService();
     private static FareCalculatorService fareCalculatorService = new Fare30MinutesCalculator();
-    private static FareCalculatorService fareDiscountCalculator = new FareDiscountCalculator();
+    private static FareDiscountCalculator fareDiscountCalculator = new FareDiscountCalculator();
 
     private InputReaderUtil inputReaderUtil;
     private ParkingSpotDAO parkingSpotDAO;
@@ -120,8 +118,10 @@ public class ParkingService {
             Date outTime = new Date();
             ticket.setOutTime(outTime);
 
-            if(ticketSize > 3){
-                fareDiscountCalculator.calculateFare(ticket);
+            System.out.println("+++ size() processExitingVehicle() "+ ticketSize );
+            if(ticketSize > 2){
+                System.out.println("+++ OK OK OK "+ ticketSize );
+                fareDiscountCalculator.calculateFare(ticket, true);
             }else{
                 fareCalculatorService.calculateFare(ticket);
             }

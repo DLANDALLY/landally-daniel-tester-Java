@@ -69,7 +69,6 @@ public class ParkingServiceTest {
     @Test
     public void testProcessIncomingVehicle() throws Exception {
         // Arrange
-        //ParkingSpot mockSpot = new ParkingSpot(1, ParkingType.CAR, true); TODO a supp
         when(parkingSpotDAO.getNextAvailableSlot(ParkingType.CAR)).thenReturn(10);
 
         String vehicleRegNumber = "AZ123AZ";

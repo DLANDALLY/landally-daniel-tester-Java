@@ -35,39 +35,11 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="79a8ec3c-c1f3-45ed-b315-0c9862fefd84">
-      <console name="Connection" type="STANDARD" schema="prod" session="Main"><![CDATA[select * from ticket
-select * from parking
-
-select min(PARKING_NUMBER) from parking where AVAILABLE = 2 and TYPE = 2
-update parking set Type=1 where TYPE= 'CAR'
-select * from parking
-update parking set Type=2 where TYPE= 'BIKE'
-update parking set Type=1 where TYPE= 'Motorbike'
-select * from parking
-update parking set available = 0 where PARKING_NUMBER = 10
-update parking set available = 0 where PARKING_NUMBER = 9
-select * from test.parking
-select * from test.ticket
-select t.PARKING_NUMBER, t.ID, t.PRICE, t.IN_TIME, t.OUT_TIME, p.TYPE from ticket t,parking p where p.parking_number = t.parking_number and t.VEHICLE_REG_NUMBER='DA123AD' order by t.IN_TIME
-update parking set available = 1 where PARKING_NUMBER = 1
-select min(PARKING_NUMBER) from parking where AVAILABLE = 1 and TYPE = 2
-select * from parking
-
-update test.parking set Type=1 where TYPE= 'CAR'
-update test.parking set Type=2 where TYPE= 'BIKE'
-update test.parking set Type=1 where TYPE= 'Motorbike'
-select * from test.parking
-select * from test.ticket
-
-select t.PARKING_NUMBER, t.ID, t.PRICE, t.IN_TIME, t.OUT_TIME, p.TYPE from ticket t,parking p where p.parking_number = t.parking_number and t.VEHICLE_REG_NUMBER=? order by t.IN_TIME  limit 1
-
-select t.PARKING_NUMBER, t.ID, t.PRICE, t.IN_TIME, t.OUT_TIME, p.TYPE 
-from ticket t,parking p 
-where p.parking_number = t.parking_number 
-and t.VEHICLE_REG_NUMBER='CD234EF'
-order by t.IN_TIME  
-limit 1]]></console>
-      <console name="ParkingSystem" type="STANDARD" schema="" session="Main" />
+      <console name="ParkingSystem" type="STANDARD" schema="prod" session="Main"><![CDATA[SELECT * FROM parking;
+SELECT * FROM ticket;]]></console>
+    </connection>
+    <connection id="607b72b7-7008-4770-ae01-3bac9c2e2bc7">
+      <console name="ParkingSystemTest" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -78,6 +50,7 @@ limit 1]]></console>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="79a8ec3c-c1f3-45ed-b315-0c9862fefd84" />
+    <connection id="607b72b7-7008-4770-ae01-3bac9c2e2bc7" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="79a8ec3c-c1f3-45ed-b315-0c9862fefd84" dataset="prod.parking" active-filter-id="eb2bf84b-a8de-4b2c-97f4-ee7111618547">
@@ -100,7 +73,11 @@ limit 1]]></console>
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
-    <filters />
+    <filters>
+      <filter connection-id="607b72b7-7008-4770-ae01-3bac9c2e2bc7" schema="" object-type="user" join-type="AND">
+        <condition operator="EQUAL" pattern="'root'@'192.168.65.1'" active="true" />
+      </filter>
+    </filters>
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
@@ -110,7 +87,7 @@ limit 1]]></console>
           <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
-          <database-version value="9.0" />
+          <database-version value="8.3" />
           <driver-source value="BUNDLED" />
           <driver-library value="" />
           <driver value="" />
@@ -123,6 +100,100 @@ limit 1]]></console>
           <type value="USER_PASSWORD" />
           <user value="root" />
           <deprecated-pwd value="cm9vdHJvb3Q=" />
+        </database>
+        <properties>
+          <auto-commit value="false" />
+        </properties>
+        <ssh-settings>
+          <active value="false" />
+          <proxy-host value="" />
+          <proxy-port value="22" />
+          <proxy-user value="" />
+          <deprecated-proxy-pwd value="" />
+          <auth-type value="PASSWORD" />
+          <key-file value="" />
+          <key-passphrase value="" />
+        </ssh-settings>
+        <ssl-settings>
+          <active value="false" />
+          <certificate-authority-file value="" />
+          <client-certificate-file value="" />
+          <client-key-file value="" />
+        </ssl-settings>
+        <details>
+          <charset value="UTF-8" />
+          <session-management value="true" />
+          <ddl-file-binding value="true" />
+          <database-logging value="true" />
+          <connect-automatically value="true" />
+          <restore-workspace value="true" />
+          <restore-workspace-deep value="false" />
+          <environment-type value="default" />
+          <connectivity-timeout value="30" />
+          <idle-time-to-disconnect value="30" />
+          <idle-time-to-disconnect-pool value="5" />
+          <credential-expiry-time value="10" />
+          <max-connection-pool-size value="7" />
+          <alternative-statement-delimiter value="" />
+        </details>
+        <debugger>
+          <compile-dependencies value="true" />
+          <tcp-driver-tunneling value="false" />
+          <tcp-host-address value="" />
+          <tcp-port-from value="4000" />
+          <tcp-port-to value="4999" />
+          <debugger-type value="ASK" />
+        </debugger>
+        <object-filters hide-empty-schemas="false" hide-pseudo-columns="false" hide-audit-columns="false">
+          <object-filters />
+          <object-type-filter use-master-settings="true">
+            <object-type name="SCHEMA" enabled="true" />
+            <object-type name="USER" enabled="true" />
+            <object-type name="ROLE" enabled="true" />
+            <object-type name="PRIVILEGE" enabled="true" />
+            <object-type name="CHARSET" enabled="true" />
+            <object-type name="TABLE" enabled="true" />
+            <object-type name="VIEW" enabled="true" />
+            <object-type name="MATERIALIZED_VIEW" enabled="true" />
+            <object-type name="NESTED_TABLE" enabled="true" />
+            <object-type name="COLUMN" enabled="true" />
+            <object-type name="INDEX" enabled="true" />
+            <object-type name="CONSTRAINT" enabled="true" />
+            <object-type name="DATASET_TRIGGER" enabled="true" />
+            <object-type name="DATABASE_TRIGGER" enabled="true" />
+            <object-type name="SYNONYM" enabled="true" />
+            <object-type name="SEQUENCE" enabled="true" />
+            <object-type name="PROCEDURE" enabled="true" />
+            <object-type name="FUNCTION" enabled="true" />
+            <object-type name="PACKAGE" enabled="true" />
+            <object-type name="TYPE" enabled="true" />
+            <object-type name="TYPE_ATTRIBUTE" enabled="true" />
+            <object-type name="ARGUMENT" enabled="true" />
+            <object-type name="DIMENSION" enabled="true" />
+            <object-type name="CLUSTER" enabled="true" />
+            <object-type name="DBLINK" enabled="true" />
+          </object-type-filter>
+        </object-filters>
+      </connection>
+      <connection id="607b72b7-7008-4770-ae01-3bac9c2e2bc7" active="true" signed="true">
+        <database>
+          <name value="ParkingSystemTest" />
+          <description value="" />
+          <database-type value="MYSQL" />
+          <config-type value="BASIC" />
+          <database-version value="9999.0" />
+          <driver-source value="BUNDLED" />
+          <driver-library value="" />
+          <driver value="" />
+          <url-type value="DATABASE" />
+          <host value="localhost" />
+          <port value="3306" />
+          <database value="test" />
+          <tns-folder value="" />
+          <tns-profile value="" />
+          <type value="USER_PASSWORD" />
+          <user value="root" />
+          <deprecated-pwd value="dGVzdHJvb3Q=" />
         </database>
         <properties>
           <auto-commit value="false" />

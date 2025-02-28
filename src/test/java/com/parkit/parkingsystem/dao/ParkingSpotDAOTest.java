@@ -15,8 +15,6 @@ class ParkingSpotDAOTest {
     void setUp() {
         parkingSpotDAO = new ParkingSpotDAO();
         parkingSpot = new ParkingSpot(10, ParkingType.CAR, false);
-        //ParkingSpot parkingSpotFalse = parkingSpot;
-        //parkingSpotFalse.setAvailable(false);
     }
 
     @Test
@@ -28,7 +26,7 @@ class ParkingSpotDAOTest {
     @Test
     void updateParking() {
         ParkingSpot parkingSpotTrue = parkingSpot;
-        //parkingSpotTrue.setAvailable(true);
+        parkingSpotTrue.setAvailable(true);
 
         boolean result = parkingSpotDAO.updateParking(parkingSpotTrue);
         assertTrue(result);

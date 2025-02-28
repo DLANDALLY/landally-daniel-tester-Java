@@ -50,33 +50,5 @@ import java.sql.*;
 <span class="fc" id="L50">            }</span>
         }
 <span class="fc" id="L52">    }</span>
-
-//    public void executeSqlFromFile(String fileName) {
-//        try (Connection connection = getConnection();
-//             Statement statement = connection.createStatement()) {
-//
-//            // Utiliser le ClassLoader pour charger le fichier SQL depuis les ressources
-//            BufferedReader reader = new BufferedReader(
-//                    new InputStreamReader(DataBaseConfig.class.getClassLoader().getResourceAsStream(fileName))
-//            );
-//
-//            // Lire tout le contenu du fichier SQL
-//            StringBuilder sqlBuilder = new StringBuilder();
-//            String line;
-//            while ((line = reader.readLine()) != null) {
-//                sqlBuilder.append(line).append(&quot;\n&quot;);
-//            }
-//            String sql = sqlBuilder.toString();
-//
-//            // Exécuter le fichier SQL
-//            statement.executeUpdate(sql);
-//            System.out.println(&quot;Tables et données fictives créées avec succès !&quot;);
-//        } catch (SQLException | NullPointerException e) {
-//            e.printStackTrace();
-//            System.out.println(&quot;Erreur : Impossible de charger ou exécuter le fichier SQL.&quot;);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -40,8 +40,6 @@ class FareDiscountCalculatorTest {
 
         fareDiscountCalculator.calculateFare(ticket, true);
         assertEquals( ( 1.43) , ticket.getPrice());
-        // PAs endessous de 30 minutes
-        //assertThrows(IllegalArgumentException.class, () -> fareCalculatorService.calculateFare(ticket));
     }
 
     @Test
