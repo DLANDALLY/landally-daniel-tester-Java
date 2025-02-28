@@ -20,7 +20,6 @@ import com.parkit.parkingsystem.model.Ticket;
 <span class="fc" id="L20">        ticket.setPrice(applyDiscount(ticket.getPrice(), 5, typeRatePerHour(ticket)));</span>
 <span class="fc" id="L21">    }</span>
 
-
     /**
      * Applies a discount to the original price of a ticket.
      * @param originalPrice The original price of the ticket.
@@ -29,13 +28,12 @@ import com.parkit.parkingsystem.model.Ticket;
      * @return The discounted price.
      */
     public double applyDiscount(double originalPrice, int discountPercentage, double typeRatePerHour) {
-<span class="fc" id="L32">        double price = (typeRatePerHour - (typeRatePerHour * discountPercentage / 100)) * originalPrice;</span>
-<span class="fc" id="L33">        return aroud(price);</span>
+<span class="fc" id="L31">        double price = (typeRatePerHour - (typeRatePerHour * discountPercentage / 100)) * originalPrice;</span>
+<span class="fc" id="L32">        return aroud(price);</span>
     }
 
     private double aroud(double originalPrice){
-<span class="fc" id="L37">        return Math.round(originalPrice * 100.0) / 100.0;</span>
+<span class="fc" id="L36">        return Math.round(originalPrice * 100.0) / 100.0;</span>
     }
-
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

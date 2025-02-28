@@ -63,14 +63,12 @@ public class ParkingServiceTest {
         ticket.setInTime(inTime);
         ticket.setOutTime(null);
 
-        //fareCalculatorService.calculateFare(ticket);
     }
 
     @Test
     public void testProcessIncomingVehicle() throws Exception {
         // Arrange
         when(parkingSpotDAO.getNextAvailableSlot(ParkingType.CAR)).thenReturn(10);
-
         String vehicleRegNumber = "AZ123AZ";
         when(inputReaderUtil.readSelection()).thenReturn(1);
         when(parkingService.getVehicleRegNumber()).thenReturn(vehicleRegNumber);

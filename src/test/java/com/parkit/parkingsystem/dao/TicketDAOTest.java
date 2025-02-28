@@ -84,5 +84,4 @@ class TicketDAOTest {
 
         assertEquals(nticket, ticketDAO.getNbTicket("AB123CD").size());
     }
-
 }

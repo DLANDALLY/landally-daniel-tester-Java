@@ -39,7 +39,7 @@ class FareDiscountCalculatorTest {
         ticket.setVehicleRegNumber("AA-123-BB");
 
         fareDiscountCalculator.calculateFare(ticket, true);
-        assertEquals( ( 1.43) , ticket.getPrice());
+        assertEquals( (1.43) , ticket.getPrice());
     }
 
     @Test
@@ -59,10 +59,7 @@ class FareDiscountCalculatorTest {
         fareDiscountCalculator.calculateFare(ticket, true);
 
         assertEquals( (0.95 * Fare.BIKE_RATE_PER_HOUR) , ticket.getPrice());
-        //assertThrows(IllegalArgumentException.class, () -> fareDiscountCalculator.calculateFare(ticket));
     }
-
-
 
     @Test
     void applyDiscount() {
@@ -73,8 +70,8 @@ class FareDiscountCalculatorTest {
         double discountFare = fare - ((fare * discountPercentage) /100);
         double expected = originalPrice * discountFare;
         double expectedRoud = Math.round(expected * 100.0) / 100.0;
-
         double result = fareDiscountCalculator.applyDiscount(originalPrice, discountPercentage, fare);
+
         assertEquals(expectedRoud, result);
     }
 }

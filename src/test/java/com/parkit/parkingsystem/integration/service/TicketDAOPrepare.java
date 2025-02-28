@@ -1,6 +1,5 @@
 package com.parkit.parkingsystem.integration.service;
 
-import com.parkit.parkingsystem.config.DataBaseConfig;
 import com.parkit.parkingsystem.constants.DBConstants;
 import com.parkit.parkingsystem.constants.ParkingType;
 import com.parkit.parkingsystem.integration.config.DataBaseTestConfig;
@@ -18,7 +17,6 @@ import java.util.List;
 
 public class TicketDAOPrepare {
     private static final Logger logger = LogManager.getLogger("TicketDAO");
-
     public DataBaseTestConfig dataBaseConfig = new DataBaseTestConfig();
 
     public boolean saveTicket(Ticket ticket){
@@ -27,7 +25,6 @@ public class TicketDAOPrepare {
             con = dataBaseConfig.getConnection();
             PreparedStatement ps = con.prepareStatement(DBConstants.SAVE_TICKET);
             //ID, PARKING_NUMBER, VEHICLE_REG_NUMBER, PRICE, IN_TIME, OUT_TIME)
-            //ps.setInt(1,ticket.getId());
             ps.setInt(1,ticket.getParkingSpot().getId());
             ps.setString(2, ticket.getVehicleRegNumber());
             ps.setDouble(3, ticket.getPrice());
