@@ -63,10 +63,15 @@ public class ParkingDataBaseIT {
     public void testParkingLotExit(){
         testParkingACar();
         ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
+        Date inTime = new Date();
+        inTime.setTime( System.currentTimeMillis() - ( 60 * 60 * 1000) );
+        Ticket ticket = ticketDAO.getTicket("ABCDEF");
+        ticket.setInTime(inTime);
+        ticketDAO.saveTicket(ticket);
         parkingService.processExitingVehicle();
         //TODO: check that the fare generated and out time are populated correctly in the database
 
-        assertNotNull(ticketDAO.getTicket("ABCDEF").getPrice());
+        assertEquals( (1.50) , ticketDAO.getTicket("ABCDEF").getPrice());
         assertNotNull(ticketDAO.getTicket("ABCDEF").getOutTime());
     }
 
@@ -86,8 +91,10 @@ public class ParkingDataBaseIT {
         ticketDAO.saveTicket(ticket);
 
         parkingService.processExitingVehicle();
+        double value = ticketDAO.getTicket("ABCDEF").getPrice();
+        double rounded = Math.round(value * 100.0) / 100.0;
 
         assertTrue(ticketDAO.getNbTicket("ABCDEF").size() > 2);
-        assertEquals( (1.43) , ticketDAO.getTicket("ABCDEF").getPrice());
+        assertEquals( (1.43) , rounded);
     }
 }
