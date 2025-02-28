@@ -115,9 +115,7 @@ public class ParkingService {
             Date outTime = new Date();
             ticket.setOutTime(outTime);
 
-            System.out.println("+++ size() processExitingVehicle() "+ ticketSize );
             if(ticketSize > 2){
-                System.out.println("+++ OK OK OK "+ ticketSize );
                 fareDiscountCalculator.calculateFare(ticket, true);
             }else{
                 fareCalculatorService.calculateFare(ticket);
