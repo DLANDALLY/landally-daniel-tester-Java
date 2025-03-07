@@ -1,5 +1,6 @@
 package com.parkit.parkingsystem.integration;
 
+import com.parkit.parkingsystem.constants.Fare;
 import com.parkit.parkingsystem.dao.ParkingSpotDAO;
 import com.parkit.parkingsystem.dao.TicketDAO;
 import com.parkit.parkingsystem.integration.config.DataBaseTestConfig;
@@ -54,34 +55,32 @@ public class ParkingDataBaseIT {
     public void testParkingACar(){
         ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
         parkingService.processIncomingVehicle();
-        //TODO: check that a ticket is actualy saved in DB and Parking table is updated with availability
 
         assertEquals("ABCDEF", ticketDAO.getTicket("ABCDEF").getVehicleRegNumber());
     }
 
     @Test
     public void testParkingLotExit(){
-        testParkingACar();
-        ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
+        getIncomingVehicle().processIncomingVehicle();
+        //ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
         Date inTime = new Date();
         inTime.setTime( System.currentTimeMillis() - ( 60 * 60 * 1000) );
         Ticket ticket = ticketDAO.getTicket("ABCDEF");
         ticket.setInTime(inTime);
         ticketDAO.saveTicket(ticket);
-        parkingService.processExitingVehicle();
-        //TODO: check that the fare generated and out time are populated correctly in the database
 
-        assertEquals( (1.50) , ticketDAO.getTicket("ABCDEF").getPrice());
+        getIncomingVehicle().processExitingVehicle();
+
+        assertEquals( Fare.CAR_RATE_PER_HOUR, ticketDAO.getTicket("ABCDEF").getPrice());
         assertNotNull(ticketDAO.getTicket("ABCDEF").getOutTime());
     }
 
     @Test
     public void testParkingLotExitRecurringUser(){
-        ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
-
+        //ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
         for (int i = 0; i < 3; i++) {
-            testParkingACar();
-            parkingService.processExitingVehicle();
+            getIncomingVehicle().processIncomingVehicle();
+            getIncomingVehicle().processExitingVehicle();
         }
 
         Date inTime = new Date();
@@ -90,11 +89,16 @@ public class ParkingDataBaseIT {
         ticket.setInTime(inTime);
         ticketDAO.saveTicket(ticket);
 
-        parkingService.processExitingVehicle();
+        getIncomingVehicle().processExitingVehicle();
+
         double value = ticketDAO.getTicket("ABCDEF").getPrice();
         double rounded = Math.round(value * 100.0) / 100.0;
 
         assertTrue(ticketDAO.getNbTicket("ABCDEF").size() > 2);
-        assertEquals( (1.43) , rounded);
+        assertEquals( 1.43 , rounded);
+    }
+
+    public ParkingService getIncomingVehicle(){
+        return new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
     }
 }

@@ -20,6 +20,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -76,6 +77,34 @@ public class ParkingServiceTest {
         Ticket mockTicketBDD = ticket;
         when(ticketDAO.getTicket(vehicleRegNumber)).thenReturn(mockTicketBDD);
         when(ticketDAO.getNbTicket(vehicleRegNumber)).thenReturn(new ArrayList<>());
+
+        // Act
+        parkingService.processIncomingVehicle();
+
+        // Assert
+        Mockito.verify(parkingSpotDAO).updateParking(Mockito.any(ParkingSpot.class));
+        ArgumentCaptor<Ticket> ticketCaptor = ArgumentCaptor.forClass(Ticket.class);
+        Mockito.verify(ticketDAO).saveTicket(ticketCaptor.capture());
+        assertEquals(vehicleRegNumber, ticketCaptor.getValue().getVehicleRegNumber());
+    }
+
+    @Test
+    public void testProcessIncomingVehicleRecursif() throws Exception {
+        // Arrange
+        Ticket oldTicket1 = new Ticket();
+        Ticket oldTicket2 = new Ticket();
+        Ticket oldTicket3 = new Ticket();
+        List<Ticket> ticketHistory = Arrays.asList(oldTicket1, oldTicket2, oldTicket3);
+
+        when(parkingSpotDAO.getNextAvailableSlot(ParkingType.CAR)).thenReturn(10);
+        String vehicleRegNumber = "AZ123AZ";
+        when(inputReaderUtil.readSelection()).thenReturn(1);
+        when(parkingService.getVehicleRegNumber()).thenReturn(vehicleRegNumber);
+
+        Ticket mockTicketBDD = ticket;
+
+        when(ticketDAO.getTicket(vehicleRegNumber)).thenReturn(mockTicketBDD);
+        when(ticketDAO.getNbTicket(vehicleRegNumber)).thenReturn(ticketHistory);
 
         // Act
         parkingService.processIncomingVehicle();

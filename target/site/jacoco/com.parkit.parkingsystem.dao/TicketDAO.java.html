@@ -29,7 +29,7 @@ import java.util.List;
 <span class="fc" id="L29">            ps.setString(2, ticket.getVehicleRegNumber());</span>
 <span class="fc" id="L30">            ps.setDouble(3, ticket.getPrice());</span>
 <span class="fc" id="L31">            ps.setTimestamp(4, new Timestamp(ticket.getInTime().getTime()));</span>
-<span class="pc bpc" id="L32" title="1 of 2 branches missed.">            ps.setTimestamp(5, (ticket.getOutTime() == null)?null: (new Timestamp(ticket.getOutTime().getTime())) );</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">            ps.setTimestamp(5, (ticket.getOutTime() == null)?null: (new Timestamp(ticket.getOutTime().getTime())) );</span>
 <span class="fc" id="L33">            return ps.execute();</span>
 <span class="nc" id="L34">        }catch (Exception ex){</span>
 <span class="nc" id="L35">            logger.error(&quot;Error fetching next available slot&quot;,ex);</span>
@@ -48,7 +48,7 @@ import java.util.List;
             //ID, PARKING_NUMBER, VEHICLE_REG_NUMBER, PRICE, IN_TIME, OUT_TIME)
 <span class="fc" id="L49">            ps.setString(1,vehicleRegNumber);</span>
 <span class="fc" id="L50">            ResultSet rs = ps.executeQuery();</span>
-<span class="pc bpc" id="L51" title="1 of 2 branches missed.">            if(rs.next()){</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">            if(rs.next()){</span>
 <span class="fc" id="L52">                ticket = new Ticket();</span>
 <span class="fc" id="L53">                ParkingSpot parkingSpot = new ParkingSpot(rs.getInt(1), ParkingType.valueOf(rs.getString(6)),false);</span>
 <span class="fc" id="L54">                ticket.setParkingSpot(parkingSpot);</span>
