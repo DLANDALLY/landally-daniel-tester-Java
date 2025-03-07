@@ -89,7 +89,7 @@ public class ParkingServiceTest {
     }
 
     @Test
-    public void testProcessIncomingVehicleRecursif() throws Exception {
+    public void testProcessIncomingVehicleForReturningCustomer() throws Exception {
         // Arrange
         Ticket oldTicket1 = new Ticket();
         Ticket oldTicket2 = new Ticket();
