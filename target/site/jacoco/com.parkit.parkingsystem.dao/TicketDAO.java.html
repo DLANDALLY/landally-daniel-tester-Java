@@ -29,13 +29,13 @@ import java.util.List;
 <span class="fc" id="L29">            ps.setString(2, ticket.getVehicleRegNumber());</span>
 <span class="fc" id="L30">            ps.setDouble(3, ticket.getPrice());</span>
 <span class="fc" id="L31">            ps.setTimestamp(4, new Timestamp(ticket.getInTime().getTime()));</span>
-<span class="fc bfc" id="L32" title="All 2 branches covered.">            ps.setTimestamp(5, (ticket.getOutTime() == null)?null: (new Timestamp(ticket.getOutTime().getTime())) );</span>
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">            ps.setTimestamp(5, (ticket.getOutTime() == null)?null: (new Timestamp(ticket.getOutTime().getTime())) );</span>
 <span class="fc" id="L33">            return ps.execute();</span>
-<span class="nc" id="L34">        }catch (Exception ex){</span>
-<span class="nc" id="L35">            logger.error(&quot;Error fetching next available slot&quot;,ex);</span>
-        }finally {
-<span class="pc" id="L37">            dataBaseConfig.closeConnection(con);</span>
-<span class="pc" id="L38">            return false;</span>
+<span class="fc" id="L34">        }catch (Exception ex){</span>
+<span class="fc" id="L35">            logger.error(&quot;Error fetching next available slot&quot;,ex);</span>
+<span class="nc" id="L36">        }finally {</span>
+<span class="fc" id="L37">            dataBaseConfig.closeConnection(con);</span>
+<span class="fc" id="L38">            return false;</span>
         }
     }
 
@@ -48,7 +48,7 @@ import java.util.List;
             //ID, PARKING_NUMBER, VEHICLE_REG_NUMBER, PRICE, IN_TIME, OUT_TIME)
 <span class="fc" id="L49">            ps.setString(1,vehicleRegNumber);</span>
 <span class="fc" id="L50">            ResultSet rs = ps.executeQuery();</span>
-<span class="fc bfc" id="L51" title="All 2 branches covered.">            if(rs.next()){</span>
+<span class="pc bpc" id="L51" title="1 of 2 branches missed.">            if(rs.next()){</span>
 <span class="fc" id="L52">                ticket = new Ticket();</span>
 <span class="fc" id="L53">                ParkingSpot parkingSpot = new ParkingSpot(rs.getInt(1), ParkingType.valueOf(rs.getString(6)),false);</span>
 <span class="fc" id="L54">                ticket.setParkingSpot(parkingSpot);</span>
@@ -60,11 +60,11 @@ import java.util.List;
             }
 <span class="fc" id="L61">            dataBaseConfig.closeResultSet(rs);</span>
 <span class="fc" id="L62">            dataBaseConfig.closePreparedStatement(ps);</span>
-<span class="nc" id="L63">        }catch (Exception ex){</span>
-<span class="nc" id="L64">            logger.error(&quot;Error fetching next available slot&quot;,ex);</span>
-        }finally {
-<span class="pc" id="L66">            dataBaseConfig.closeConnection(con);</span>
-<span class="pc" id="L67">            return ticket;</span>
+<span class="fc" id="L63">        }catch (Exception ex){</span>
+<span class="fc" id="L64">            logger.error(&quot;Error fetching next available slot&quot;,ex);</span>
+<span class="nc" id="L65">        }finally {</span>
+<span class="fc" id="L66">            dataBaseConfig.closeConnection(con);</span>
+<span class="fc" id="L67">            return ticket;</span>
         }
     }
 
@@ -106,11 +106,11 @@ import java.util.List;
 <span class="fc" id="L106">                ticket.setInTime(rs.getTimestamp(4));</span>
 <span class="fc" id="L107">                ticket.setOutTime(rs.getTimestamp(5));</span>
 <span class="fc" id="L108">                tickets.add(ticket);</span>
-<span class="fc" id="L109">            }</span>
+            }
 <span class="fc" id="L110">            dataBaseConfig.closeResultSet(rs);</span>
 <span class="fc" id="L111">            dataBaseConfig.closePreparedStatement(ps);</span>
-<span class="nc" id="L112">        }catch (Exception ex){</span>
-<span class="nc" id="L113">            logger.error(&quot;Error fetching next available slot&quot;,ex);</span>
+<span class="fc" id="L112">        }catch (Exception ex){</span>
+<span class="fc" id="L113">            logger.error(&quot;Error fetching next available slot&quot;,ex);</span>
         }finally {
 <span class="fc" id="L115">            dataBaseConfig.closeConnection(con);</span>
         }

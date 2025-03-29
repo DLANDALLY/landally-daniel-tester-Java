@@ -62,7 +62,6 @@ public class ParkingDataBaseIT {
     @Test
     public void testParkingLotExit(){
         getIncomingVehicle().processIncomingVehicle();
-        //ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
         Date inTime = new Date();
         inTime.setTime( System.currentTimeMillis() - ( 60 * 60 * 1000) );
         Ticket ticket = ticketDAO.getTicket("ABCDEF");
@@ -77,7 +76,6 @@ public class ParkingDataBaseIT {
 
     @Test
     public void testParkingLotExitRecurringUser(){
-        //ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
         for (int i = 0; i < 3; i++) {
             getIncomingVehicle().processIncomingVehicle();
             getIncomingVehicle().processExitingVehicle();

@@ -96,6 +96,7 @@ public class ParkingServiceTest {
         Ticket oldTicket3 = new Ticket();
         List<Ticket> ticketHistory = Arrays.asList(oldTicket1, oldTicket2, oldTicket3);
 
+
         when(parkingSpotDAO.getNextAvailableSlot(ParkingType.CAR)).thenReturn(10);
         String vehicleRegNumber = "AZ123AZ";
         when(inputReaderUtil.readSelection()).thenReturn(1);

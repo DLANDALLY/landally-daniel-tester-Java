@@ -59,11 +59,11 @@ class TicketDAOTest {
         Date inTime = new Date();
         inTime.setTime( System.currentTimeMillis() - (  60 * 60 * 1000) );
 
-        Ticket ticket = ticketDAO.getTicket("DA321DA");
+        Ticket ticket = ticketDAO.getTicket("KL890MN");
         ticket.setPrice(120.0);
         ticketDAO.updateTicket(ticket);
 
-        assertEquals(120.0, ticketDAO.getTicket("DA321DA").getPrice());
+        assertEquals(120.0, ticketDAO.getTicket("KL890MN").getPrice());
     }
 
     @Test
