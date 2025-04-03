@@ -56,7 +56,7 @@ https://github.com/DLANDALLY/landally-daniel-tester-Java/tree/daniel
 
 ### Rapport JaCoCo
 
-![Capture d’écran 2025-04-03 à 12.45.12.png](..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2F80%2Fx9v0qvy17vsf3l66l7zt13wm0000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_UhouhO%2FCapture%20d%E2%80%99%C3%A9cran%202025-04-03%20%C3%A0%2012.45.12.png)
+<img width="766" alt="Capture d’écran 2025-04-03 à 12 54 43" src="https://github.com/user-attachments/assets/2714b5f2-1661-4e47-925a-affaf76129e9" />
 
 ### Rapport Surefire
 ![Capture d’écran 2025-04-03 à 12 55 26](https://github.com/user-attachments/assets/5948cea7-24aa-4cce-8e5a-a8c087f2223c)
