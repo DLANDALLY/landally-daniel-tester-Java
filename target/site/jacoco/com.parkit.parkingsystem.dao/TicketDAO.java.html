@@ -31,11 +31,11 @@ import java.util.List;
 <span class="fc" id="L31">            ps.setTimestamp(4, new Timestamp(ticket.getInTime().getTime()));</span>
 <span class="pc bpc" id="L32" title="1 of 2 branches missed.">            ps.setTimestamp(5, (ticket.getOutTime() == null)?null: (new Timestamp(ticket.getOutTime().getTime())) );</span>
 <span class="fc" id="L33">            return ps.execute();</span>
-<span class="fc" id="L34">        }catch (Exception ex){</span>
-<span class="fc" id="L35">            logger.error(&quot;Error fetching next available slot&quot;,ex);</span>
-<span class="nc" id="L36">        }finally {</span>
-<span class="fc" id="L37">            dataBaseConfig.closeConnection(con);</span>
-<span class="fc" id="L38">            return false;</span>
+<span class="nc" id="L34">        }catch (Exception ex){</span>
+<span class="nc" id="L35">            logger.error(&quot;Error fetching next available slot&quot;,ex);</span>
+        }finally {
+<span class="pc" id="L37">            dataBaseConfig.closeConnection(con);</span>
+<span class="pc" id="L38">            return false;</span>
         }
     }
 
@@ -60,11 +60,11 @@ import java.util.List;
             }
 <span class="fc" id="L61">            dataBaseConfig.closeResultSet(rs);</span>
 <span class="fc" id="L62">            dataBaseConfig.closePreparedStatement(ps);</span>
-<span class="fc" id="L63">        }catch (Exception ex){</span>
-<span class="fc" id="L64">            logger.error(&quot;Error fetching next available slot&quot;,ex);</span>
-<span class="nc" id="L65">        }finally {</span>
-<span class="fc" id="L66">            dataBaseConfig.closeConnection(con);</span>
-<span class="fc" id="L67">            return ticket;</span>
+<span class="nc" id="L63">        }catch (Exception ex){</span>
+<span class="nc" id="L64">            logger.error(&quot;Error fetching next available slot&quot;,ex);</span>
+        }finally {
+<span class="pc" id="L66">            dataBaseConfig.closeConnection(con);</span>
+<span class="pc" id="L67">            return ticket;</span>
         }
     }
 
@@ -98,23 +98,24 @@ import java.util.List;
 
 <span class="fc bfc" id="L99" title="All 2 branches covered.">            while (rs.next()){</span>
 <span class="fc" id="L100">                Ticket ticket = new Ticket();</span>
-<span class="fc" id="L101">                ParkingSpot parkingSpot = new ParkingSpot(rs.getInt(1), ParkingType.valueOf(rs.getString(6)),false);</span>
-<span class="fc" id="L102">                ticket.setParkingSpot(parkingSpot);</span>
-<span class="fc" id="L103">                ticket.setId(rs.getInt(2));</span>
-<span class="fc" id="L104">                ticket.setVehicleRegNumber(vehicleRegNumber);</span>
-<span class="fc" id="L105">                ticket.setPrice(rs.getDouble(3));</span>
-<span class="fc" id="L106">                ticket.setInTime(rs.getTimestamp(4));</span>
-<span class="fc" id="L107">                ticket.setOutTime(rs.getTimestamp(5));</span>
-<span class="fc" id="L108">                tickets.add(ticket);</span>
-            }
-<span class="fc" id="L110">            dataBaseConfig.closeResultSet(rs);</span>
-<span class="fc" id="L111">            dataBaseConfig.closePreparedStatement(ps);</span>
-<span class="fc" id="L112">        }catch (Exception ex){</span>
-<span class="fc" id="L113">            logger.error(&quot;Error fetching next available slot&quot;,ex);</span>
+<span class="fc" id="L101">                ParkingSpot parkingSpot = new ParkingSpot(rs.getInt(1),</span>
+<span class="fc" id="L102">                        ParkingType.valueOf(rs.getString(6)),false);</span>
+<span class="fc" id="L103">                ticket.setParkingSpot(parkingSpot);</span>
+<span class="fc" id="L104">                ticket.setId(rs.getInt(2));</span>
+<span class="fc" id="L105">                ticket.setVehicleRegNumber(vehicleRegNumber);</span>
+<span class="fc" id="L106">                ticket.setPrice(rs.getDouble(3));</span>
+<span class="fc" id="L107">                ticket.setInTime(rs.getTimestamp(4));</span>
+<span class="fc" id="L108">                ticket.setOutTime(rs.getTimestamp(5));</span>
+<span class="fc" id="L109">                tickets.add(ticket);</span>
+<span class="fc" id="L110">            }</span>
+<span class="fc" id="L111">            dataBaseConfig.closeResultSet(rs);</span>
+<span class="fc" id="L112">            dataBaseConfig.closePreparedStatement(ps);</span>
+<span class="nc" id="L113">        }catch (Exception ex){</span>
+<span class="nc" id="L114">            logger.error(&quot;Error fetching next available slot&quot;,ex);</span>
         }finally {
-<span class="fc" id="L115">            dataBaseConfig.closeConnection(con);</span>
+<span class="fc" id="L116">            dataBaseConfig.closeConnection(con);</span>
         }
-<span class="fc" id="L117">        return tickets;</span>
+<span class="fc" id="L118">        return tickets;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

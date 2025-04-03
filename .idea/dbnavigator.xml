@@ -88,9 +88,7 @@ SELECT * FROM ticket;]]></console>
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="79a8ec3c-c1f3-45ed-b315-0c9862fefd84" object-ref="consoles/Connection" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="79a8ec3c-c1f3-45ed-b315-0c9862fefd84" />

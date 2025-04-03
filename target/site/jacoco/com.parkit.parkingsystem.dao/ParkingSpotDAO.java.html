@@ -28,8 +28,8 @@ import java.sql.ResultSet;
             }
 <span class="fc" id="L29">            dataBaseConfig.closeResultSet(rs);</span>
 <span class="fc" id="L30">            dataBaseConfig.closePreparedStatement(ps);</span>
-<span class="fc" id="L31">        }catch (Exception ex){</span>
-<span class="fc" id="L32">            logger.error(&quot;Error fetching next available slot&quot;,ex);</span>
+<span class="nc" id="L31">        }catch (Exception ex){</span>
+<span class="nc" id="L32">            logger.error(&quot;Error fetching next available slot&quot;,ex);</span>
         }finally {
 <span class="fc" id="L34">            dataBaseConfig.closeConnection(con);</span>
         }
@@ -47,9 +47,9 @@ import java.sql.ResultSet;
 <span class="fc" id="L47">            int updateRowCount = ps.executeUpdate();</span>
 <span class="fc" id="L48">            dataBaseConfig.closePreparedStatement(ps);</span>
 <span class="pc bpc" id="L49" title="1 of 2 branches missed.">            return (updateRowCount == 1);</span>
-<span class="fc" id="L50">        }catch (Exception ex){</span>
-<span class="fc" id="L51">            logger.error(&quot;Error updating parking info&quot;,ex);</span>
-<span class="fc" id="L52">            return false;</span>
+<span class="nc" id="L50">        }catch (Exception ex){</span>
+<span class="nc" id="L51">            logger.error(&quot;Error updating parking info&quot;,ex);</span>
+<span class="nc" id="L52">            return false;</span>
         }finally {
 <span class="fc" id="L54">            dataBaseConfig.closeConnection(con);</span>
         }
