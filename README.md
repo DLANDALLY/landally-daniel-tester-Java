@@ -59,5 +59,4 @@ https://github.com/DLANDALLY/landally-daniel-tester-Java/tree/daniel
 ![Capture d’écran 2025-04-03 à 12.45.12.png](..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2F80%2Fx9v0qvy17vsf3l66l7zt13wm0000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_UhouhO%2FCapture%20d%E2%80%99%C3%A9cran%202025-04-03%20%C3%A0%2012.45.12.png)
 
 ### Rapport Surefire
-
-![Capture d’écran 2025-04-03 à 12.46.31.png](..%2F..%2F..%2F..%2F..%2Fvar%2Ffolders%2F80%2Fx9v0qvy17vsf3l66l7zt13wm0000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_aSZ1Wz%2FCapture%20d%E2%80%99%C3%A9cran%202025-04-03%20%C3%A0%2012.46.31.png)
+![Capture d’écran 2025-04-03 à 12 55 26](https://github.com/user-attachments/assets/5948cea7-24aa-4cce-8e5a-a8c087f2223c)
