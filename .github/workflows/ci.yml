@@ -1,0 +1,55 @@
+name: Java 8 CI with SonarQube & GCP
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Requis par SonarQube pour l'analyse Git
+
+      - name: Set up JDK 8 (pour le build) & JDK 17 (pour Sonar)
+        uses: actions/setup-java@v4
+        with:
+          java-version: |
+            8
+            17
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Run Tests & Build
+        # On force l'utilisation de Java 8 pour compiler l'application
+        run: mvn clean test package -Djava.version=1.8
+        env:
+          JAVA_HOME: ${{ env.JAVA_HOME_8_X64 }}
+
+#      - name: SonarQube Analysis
+#        # Attention : Le scanner SonarQube moderne nécessite Java 17 pour tourner,
+#        # mais il sait analyser du code Java 8 !
+#        run: mvn sonar:sonar -Dsonar.projectKey=my-spring-boot-app -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} -Dsonar.token=${{ secrets.SONAR_TOKEN }}
+#        env:
+#          JAVA_HOME: ${{ env.JAVA_HOME_17_X64 }}
+#
+#      # --- SECTION GCP & DOCKER ---
+#      - name: Authenticate to Google Cloud
+#        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+#        uses: google-github-actions/auth@v2
+#        with:
+#          credentials_json: ${{ secrets.GCP_SA_KEY }}
+#
+#      - name: Configure Docker for GCP
+#        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+#        run: gcloud auth configure-docker europe-west1-docker.pkg.dev
+#
+#      - name: Build and Push Docker Image
+#        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+#        run: |
+#          IMAGE_NAME=europe-west1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/my-repo/spring-app:${{ github.sha }}
+#          docker build -t $IMAGE_NAME .
+#          docker push $IMAGE_NAME
