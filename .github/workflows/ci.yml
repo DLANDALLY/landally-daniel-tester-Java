@@ -2,9 +2,9 @@ name: Java 8 CI with SonarQube & GCP
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 jobs:
   build-and-analyze:
