@@ -1,39 +1,7 @@
 services:
-  # Service pour OpenJDK 8
-  app:
-    image: openjdk:8-jdk
-    container_name: parkingsystem-app
-    working_dir: /app
-    volumes:
-      - .:/app
-    command: bash -c "
-      java -cp target/classes com.parkit.parkingsystem.App"
 
-    networks:
-      - parkingsystem-network
-    depends_on:
-      - db
-      #- maven
-
-   # Service pour Maven
-  maven:
-    image: maven:3.8.5-openjdk-8
-    container_name: parkingsystem-maven
-    working_dir: /app
-    volumes:
-      - .:/app
-      - ~/.m2:/root/.m2
-    #command: mvn clean install test verify
-    #command: ["mvn", "clean", "install", "test", "verify"]
-    command: ["mvn", "verify"]
-    networks:
-      - parkingsystem-network
-
-
-  # Service pour MySQL
   db:
- #   image: mysql:8.0.17
-    image: mysql:9.0
+    image: mysql:8.0
     container_name: parkingsystem-db
     environment:
       MYSQL_ROOT_PASSWORD: rootroot
@@ -44,6 +12,19 @@ services:
       - parkingsystem-network
     volumes:
       - db-data:/var/lib/mysql
+
+  app:
+    image: maven:3.8.5-openjdk-8
+    container_name: parkingsystem-app
+    working_dir: /app
+    volumes:
+      - .:/app
+      - ~/.m2:/root/.m2
+    command: bash -c "mvn clean package && java -cp target/classes com.parkit.parkingsystem.App"
+    depends_on:
+      - db
+    networks:
+      - parkingsystem-network
 
 networks:
   parkingsystem-network:

@@ -6,9 +6,9 @@ parking-system,com.parkit.parkingsystem.service,ParkingService,48,256,5,10,11,67
 parking-system,com.parkit.parkingsystem.service,InteractiveShell,72,0,6,0,28,0,8,0,4,0
 parking-system,com.parkit.parkingsystem,App,12,0,0,0,5,0,3,0,3,0
 parking-system,com.parkit.parkingsystem.constants,Fare,3,0,0,0,1,0,1,0,1,0
-parking-system,com.parkit.parkingsystem.constants,ParkingType,0,15,0,0,0,3,0,1,0,1
+parking-system,com.parkit.parkingsystem.constants,ParkingType,0,24,0,0,0,3,0,1,0,1
 parking-system,com.parkit.parkingsystem.constants,DBConstants,3,0,0,0,1,0,1,0,1,0
 parking-system,com.parkit.parkingsystem.util,InputReaderUtil,45,9,4,0,15,2,5,1,3,1
-parking-system,com.parkit.parkingsystem.dao,TicketDAO,50,271,2,4,9,63,2,7,0,6
-parking-system,com.parkit.parkingsystem.dao,ParkingSpotDAO,15,92,2,2,5,24,2,4,0,4
-parking-system,com.parkit.parkingsystem.config,DataBaseConfig,15,45,3,3,6,20,3,6,0,6
+parking-system,com.parkit.parkingsystem.dao,TicketDAO,195,126,5,1,39,33,4,5,1,5
+parking-system,com.parkit.parkingsystem.dao,ParkingSpotDAO,34,73,4,0,8,21,2,4,0,4
+parking-system,com.parkit.parkingsystem.config,DataBaseConfig,33,27,5,1,16,10,5,4,2,4

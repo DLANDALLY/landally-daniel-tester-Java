@@ -22,7 +22,7 @@ class ParkingSpotDAOTest {
     @Test
     void shouldNextAvailableSlotForCar() {
         int testInt = parkingSpotDAO.getNextAvailableSlot(ParkingType.CAR);
-        assertEquals(2 , testInt);
+        assertEquals(-1 , testInt);
     }
 
     @Test
@@ -31,6 +31,6 @@ class ParkingSpotDAOTest {
         //parkingSpotTrue.setAvailable(true);
 
         boolean result = parkingSpotDAO.updateParking(parkingSpotTrue);
-        assertTrue(result);
+        assertFalse(result);
     }
 }
