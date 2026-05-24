@@ -13,6 +13,19 @@ services:
     volumes:
       - db-data:/var/lib/mysql
 
+  dbtest:
+    image: mysql:8.0
+    container_name: parkingsystem-dbtest
+    environment:
+      MYSQL_ROOT_PASSWORD: rootroot
+      MYSQL_DATABASE: test
+    ports:
+      - "3307:3307"
+    networks:
+      - parkingsystem-network
+    volumes:
+      - db-data:/var/lib/mysql
+
   app:
     image: maven:3.8.5-openjdk-8
     container_name: parkingsystem-app
